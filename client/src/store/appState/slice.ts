@@ -48,6 +48,10 @@ export const appSlice = createSlice({
             state.clicked = false;
         },
         handleYChange: (state, action: PayloadAction<any>) => {
+            if (!state.clicked) {
+                state.previousY = 0;
+                return;
+            }
             let previousY = state.previousY;
             const newY = action.payload;
             state.previousY = action.payload;
