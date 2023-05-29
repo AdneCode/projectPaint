@@ -1,10 +1,11 @@
 export type T_AppState = {
     players: T_Player[];
-    self: T_Player;
+    clicked: boolean;
+    previousY: number;
     ownId: number;
 };
 
-export type T_Color = 'red' | 'blue' | 'orange';
+export type T_Color = "red" | "blue" | "orange";
 export type T_Player = {
     id: number;
     y: number;

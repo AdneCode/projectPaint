@@ -1,22 +1,29 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { T_AppState, T_Color, T_Player } from '../../../../types';
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { T_AppState, T_Color, T_Player } from "../../../../types";
 
 const initialState: T_AppState = {
-    players: [],
-    self: {
-        id: 0,
-        y: 0,
-        color: 'blue',
-    },
-    ownId: 0,
+    players: [
+        {
+            id: 1,
+            y: 0,
+            color: "blue",
+        },
+        {
+            id: 2,
+            y: 0,
+            color: "red",
+        },
+    ],
+    clicked: false,
+    previousY: 0,
+    ownId: 1,
 };
 
 export const appSlice = createSlice({
-    name: 'app',
+    name: "app",
     initialState,
     reducers: {
         addSelf: (state, action: PayloadAction<T_Player>) => {
-            state.self = action.payload;
             state.players = [...state.players, action.payload];
             state.ownId = action.payload.id;
         },
@@ -34,9 +41,24 @@ export const appSlice = createSlice({
                 return player;
             });
         },
+        click: (state) => {
+            state.clicked = true;
+        },
+        unclick: (state) => {
+            state.clicked = false;
+        },
+        handleYChange: (state, action: PayloadAction<any>) => {
+            let previousY = state.previousY;
+            const newY = action.payload;
+            state.previousY = action.payload;
+            if (!previousY) return;
+            if (previousY > newY) {
+            }
+            state.clicked = false;
+        },
     },
 });
 
-export const {} = appSlice.actions;
+export const { click, unclick, handleYChange } = appSlice.actions;
 
 export default appSlice.reducer;
