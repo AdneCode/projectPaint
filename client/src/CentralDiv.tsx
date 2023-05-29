@@ -1,4 +1,4 @@
-export const PlayerDiv = ({ id }: { id: number }) => {
+export const CentralDiv = ({ space }: { space: number }) => {
     return (
         <>
             <div
