@@ -5,7 +5,7 @@ export type T_AppState = {
     ownId: number;
 };
 
-export type T_Color = 'red' | 'blue' | 'orange';
+export type T_Color = 'red' | 'blue' | 'yellow';
 export type T_Player = {
     id: number;
     y: number;
