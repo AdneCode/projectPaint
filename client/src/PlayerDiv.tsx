@@ -15,17 +15,18 @@ export const PlayerDiv = ({
 }) => {
     const color = useAppSelector(selectColor(id));
     const dispatch = useAppDispatch();
+    if (!color) return <></>;
     if (id !== self.id) {
         return (
             <>
-                <StyledDiv className="w-full bg-red-300" y={other.y} />
+                <StyledDiv className="w-full" color={color} y={other.y} />
             </>
         );
     }
     return (
         <>
             {id === 1 && (
-                <StyledDiv className="w-full bg-blue-300 z-10" y={self.y} />
+                <StyledDiv className="w-full z-10" color={color} y={self.y} />
             )}
             <div
                 className="relative bg-orange-300 w-full"
@@ -33,11 +34,12 @@ export const PlayerDiv = ({
                 style={{ height: '5vh' }}
             />
             {id === 2 && (
-                <StyledDiv className="w-full bg-blue-300 z-10" y={self.y} />
+                <StyledDiv className="w-full z-10" color={color} y={self.y} />
             )}
         </>
     );
 };
-const StyledDiv = styled.div<{ y: number }>`
+const StyledDiv = styled.div<{ y: number; color: string }>`
     height: ${(props) => props.y + 'vh'};
+    background-color: ${(props) => props.color};
 `;
