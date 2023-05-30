@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import { T_Player } from '../../types';
 import { useAppDispatch } from './hooks/useAppDispatch';
+import { useAppSelector } from './hooks/useAppSelector';
 import { click } from './store';
+import { selectColor } from './store/appState/selectors';
 export const PlayerDiv = ({
     id,
     self,
@@ -11,10 +13,9 @@ export const PlayerDiv = ({
     self: T_Player;
     other: T_Player;
 }) => {
-    console.log({ id, self, other });
+    const color = useAppSelector(selectColor(id));
     const dispatch = useAppDispatch();
     if (id !== self.id) {
-        console.log('other');
         return (
             <>
                 <StyledDiv className="w-full bg-red-300" y={other.y} />
