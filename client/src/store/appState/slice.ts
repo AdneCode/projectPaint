@@ -1,17 +1,17 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { T_AppState, T_Color, T_Player } from "../../../../types";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { T_AppState, T_Color, T_Player } from '../../../../types';
 
 const initialState: T_AppState = {
     players: [
         {
             id: 1,
             y: 0,
-            color: "blue",
+            color: 'blue',
         },
         {
             id: 2,
             y: 0,
-            color: "red",
+            color: 'red',
         },
     ],
     clicked: false,
@@ -20,9 +20,26 @@ const initialState: T_AppState = {
 };
 
 export const appSlice = createSlice({
-    name: "app",
+    name: 'app',
     initialState,
     reducers: {
+        setSelfId: (state, action: PayloadAction<number>) => {
+            state.ownId = action.payload;
+        },
+        joinRoom: (state) => {
+            state.players = [
+                {
+                    id: 1,
+                    y: 10,
+                    color: 'blue',
+                },
+                {
+                    id: 2,
+                    y: 10,
+                    color: 'red',
+                },
+            ];
+        },
         addSelf: (state, action: PayloadAction<T_Player>) => {
             state.players = [...state.players, action.payload];
             state.ownId = action.payload.id;
@@ -56,13 +73,36 @@ export const appSlice = createSlice({
             const newY = action.payload;
             state.previousY = action.payload;
             if (!previousY) return;
-            if (previousY > newY) {
+            if (previousY !== newY) {
+                state.players = state.players.map((player: T_Player) => {
+                    if (player.id === state.ownId) {
+                        return { ...player, y: newY };
+                    }
+                    return player;
+                });
             }
-            state.clicked = false;
+        },
+        socketYChange: (
+            state,
+            action: PayloadAction<{ y: number; id: number }>
+        ) => {
+            state.players = state.players.map((player: T_Player) => {
+                if (player.id === action.payload.id) {
+                    return { ...player, y: action.payload.y };
+                }
+                return player;
+            });
         },
     },
 });
 
-export const { click, unclick, handleYChange } = appSlice.actions;
+export const {
+    setSelfId,
+    click,
+    unclick,
+    handleYChange,
+    socketYChange,
+    joinRoom,
+} = appSlice.actions;
 
 export default appSlice.reducer;

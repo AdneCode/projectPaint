@@ -5,10 +5,9 @@ import {
 } from '../../../types/types';
 
 import { createContext } from 'react';
-import { hostURL } from '../config';
 
 export const socket: Socket<T_ServerToClientEvents, T_ClientToServerEvents> =
-    io(hostURL, {
+    io('192.168.1.86:4000', {
         transports: ['websocket'],
         autoConnect: true,
     });

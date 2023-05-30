@@ -1,12 +1,44 @@
-export const CentralDiv = ({ space }: { space: number }) => {
+import styled from 'styled-components';
+import { T_Player } from '../../types';
+export const CentralDiv = ({
+    self,
+    other,
+}: {
+    self: T_Player;
+    other: T_Player;
+}) => {
+    if (!self || !other) return <></>;
     return (
         <>
-            <div
-                className="w-full bg-blue-300"
-                style={{ height: '10vh' }}></div>
-            <div
-                className="relative bg-orange-300 w-full"
-                style={{ height: '5vh' }}></div>
+            <StyledDiv
+                className="w-full"
+                y={100 - self.y - other.y}
+                color=
+            />
         </>
     );
 };
+const StyledDiv = styled.div<{ y: number; color: string }>`
+    height: ${(props) => props.y + 'vh'};
+    backgroundcolor: ${(props) => props.y + 'vh'};
+`;
+
+const getColor = (players: T_Player[]) => {
+    let red = 0 
+    let blue = 0
+    let yellow = 0
+    players.map((player: T_Player) => {
+        if (player.color === 'red') red++
+        if (player.color === 'blue') blue++
+        if (player.color === 'yellow') yellow++
+    })
+    if (red === 2) return 'red'
+    if (blue === 2) return 'blue'
+    if (yellow === 2) return 'yellow'
+    if (red === 1 && blue === 1) return 'purple'
+    if (red === 1 && yellow === 1) return 'orange'
+    if (blue === 1 && yellow === 1) return 'green'
+    return 'white'
+}
+
+    
