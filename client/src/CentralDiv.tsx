@@ -20,7 +20,7 @@ export const CentralDiv = ({
 };
 const StyledDiv = styled.div<{ y: number; color: string }>`
     height: ${(props) => props.y + 'vh'};
-    backgroundcolor: ${(props) => props.y + 'vh'};
+    backgroundcolor: ${(props) => props.color};'};
 `;
 
 const getColor = (players: T_Player[], y: number) => {
