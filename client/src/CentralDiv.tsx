@@ -8,11 +8,12 @@ export const CentralDiv = ({
     other: T_Player;
 }) => {
     if (!self || !other) return <></>;
+    const overHeight = 100 - self.y - other.y > 0;
     return (
         <>
             <StyledDiv
                 className="w-full"
-                y={100 - self.y - other.y}
+                y={Math.abs(100 - self.y - other.y)}
                 color={getColor([self, other], 100 - self.y - other.y)}
             />
         </>

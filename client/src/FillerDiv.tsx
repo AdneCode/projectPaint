@@ -14,7 +14,7 @@ export const FillerDiv = ({
         <>
             <StyledDiv
                 className="w-full"
-                y={10}
+                y={getHeight([self, other], id)}
                 color={getColor([self, other], id)}
             />
         </>
@@ -24,6 +24,12 @@ const StyledDiv = styled.div<{ y: number; color: string | undefined }>`
     height: ${(props) => props.y + "vh"};
     background-color: ${(props) => props.color};'};
 `;
+
+const getHeight = (players: T_Player[], id: number) => {
+    return Math.abs(
+        100 - Number(players.find((player: T_Player) => player.id !== id)?.y)
+    );
+};
 
 const getColor = (players: T_Player[], id: number) => {
     return players.find((player: T_Player) => player.id === id)?.color;

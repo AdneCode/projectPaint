@@ -3,6 +3,7 @@ import { handleYChange, unclick } from "./store";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { CentralDiv } from "./CentralDiv";
+import { ClickDiv } from "./ClickDiv";
 import { FillerDiv } from "./FillerDiv";
 import { PlayerDiv } from "./PlayerDiv";
 import { useOther } from "./hooks/useOther";
@@ -67,13 +68,9 @@ export const Field = () => {
             onMouseMove={(e: React.MouseEvent) => handleMouseMove(e)}
         >
             <FillerDiv id={1} self={self} other={other} />
-            <PlayerDiv
-                id={2}
-                self={{ ...self, y: 100 - other.y }}
-                other={other}
-            />
+            {self.id === 2 && <ClickDiv />}
             <CentralDiv self={self} other={other} />
-            <PlayerDiv id={1} self={self} other={other} />
+            {self.id === 1 && <ClickDiv />}
             <FillerDiv id={2} self={self} other={other} />
         </div>
     );
