@@ -7,6 +7,6 @@ const HOST_URL = process.env.REACT_APP_HOST_URL;
 console.log("SERVER_PORT", SERVER_PORT);
 export const port = Number(SERVER_PORT);
 
-const URL = "192.168.0.118";
+const URL = "192.168.1.121";
 export const hostURL = `http://${URL}:4000`;
 export const localURL = `http://${URL}:3001`;

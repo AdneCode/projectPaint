@@ -2,13 +2,14 @@ import { useAppDispatch } from "./hooks/useAppDispatch";
 import { click } from "./store";
 
 export const ClickDiv = () => {
-    const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
-    return (
-        <div
-            className="relative bg-orange-300 w-full"
-            onClick={() => dispatch(click())}
-            style={{ height: "5vh" }}
-        />
-    );
+  return (
+    <div
+      className="absolute w-full"
+      onMouseDown={() => dispatch(click())}
+      onTouchStart={() => dispatch(click())}
+      style={{ height: "5vh" }}
+    />
+  );
 };
