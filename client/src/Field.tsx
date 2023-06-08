@@ -15,10 +15,21 @@ export const Field = () => {
     const navigate = useNavigate();
     const handleMouseMove = (e: React.MouseEvent) => {
         if (e.pageY && self) {
-            const y = Math.round((e.pageY / window.innerHeight) * 100);
-            if (self.y !== y) {
+            const y =
+                self.id === 1
+                    ? Math.round((e.pageY / window.innerHeight) * 100)
+                    : Math.round(
+                          ((window.innerHeight - e.pageY) /
+                              window.innerHeight) *
+                              100
+                      );
+            if (self.y !== y && y >= 9) {
                 dispatch(handleYChange(y));
             }
+            // if (self.id === 2 && self.y !== y && y >= 9) {
+            //     console.log(y);
+            //     dispatch(handleYChange(y));
+            // }
         }
     };
     const handleUnclick = () => {
@@ -42,3 +53,17 @@ export const Field = () => {
         </div>
     );
 };
+
+//   //WOUT ZEGT ALS IE PAARS IS IS ER ALTIJD EEN ONDERGRENS EN EEN BOVENGRENS DUS NIEUWE COMPONENT>
+//   return (
+//     <div
+//       className="h-screen w-full"
+//       onMouseUp={() => handleUnclick()}
+//       onMouseMove={(e: React.MouseEvent) => handleMouseMove(e)}
+//     >
+//       <FillerDiv id={1} self={self} other={other} />
+//       {self.id === 2 && <ClickDiv />}
+//       <CentralDiv self={self} other={other} />
+//       {self.id === 1 && <ClickDiv />}
+//       <FillerDiv id={2} self={self} other={other} />
+//     </div>
