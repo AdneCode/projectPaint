@@ -2,8 +2,7 @@ import { handleYChange, unclick } from './store';
 
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { CentralDiv } from './CentralDiv';
-import { PlayerDiv } from './PlayerDiv';
+import { PlayerBlock } from './PlayerBlock';
 import { useOther } from './hooks/useOther';
 import { useSelf } from './hooks/useSelf';
 import { useSocket } from './hooks/useSocket';
@@ -32,13 +31,14 @@ export const Field = () => {
         return <></>;
     }
     return (
-        <div
-            className="h-screen w-full bg-red-500"
-            onMouseUp={() => handleUnclick()}
-            onMouseMove={(e: React.MouseEvent) => handleMouseMove(e)}>
-            <PlayerDiv id={1} self={self} other={other} />
-            <CentralDiv self={self} other={other} />
-            <PlayerDiv id={2} self={self} other={other} />
+        // className="h-screen w-full bg-red-500 pointer-events-none"
+        // onMouseUp={() => handleUnclick()}
+        // onMouseMove={(e: React.MouseEvent) => handleMouseMove(e)}>
+        // <PlayerDiv id={1} self={self} other={other} />
+        // <CentralDiv self={self} other={other} />
+        // <PlayerDiv id={2} self={self} other={other}
+        <div className="overflow-hidden h-[80vw] w-80 bg-gray-200">
+            <PlayerBlock />
         </div>
     );
 };

@@ -10,7 +10,18 @@ export type T_Player = {
     id: number;
     y: number;
     color: T_Color;
+    block: T_BlockName;
+    position: T_Position;
 };
+
+type T_Block = {
+    shape: number[][];
+    name: T_BlockName;
+    startColor: string;
+};
+
+type T_Position = { x: number; y: number };
+type T_BlockName = 'I' | 'J' | 'L' | 'O' | 'S' | 'T' | 'Z';
 
 export interface T_ClientToServerEvents {
     connectById: (id: string) => void;

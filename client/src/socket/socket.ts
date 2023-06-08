@@ -7,7 +7,7 @@ import {
 import { createContext } from 'react';
 
 export const socket: Socket<T_ServerToClientEvents, T_ClientToServerEvents> =
-    io('192.168.1.86:4000', {
+    io('192.168.1.84:4000', {
         transports: ['websocket'],
         autoConnect: true,
     });
