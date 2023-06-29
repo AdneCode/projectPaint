@@ -15,7 +15,7 @@ export const QRCode = () => {
     const self = useSelf();
     useEffect(() => {
         const id = getId(5);
-        setValue('http://192.168.1.84:3000/twopine/' + id);
+        setValue('http://192.168.1.121:3001/twopine/' + id);
         dispatch(setSelfId(1));
     }, []);
     if (!self || !self.y) {

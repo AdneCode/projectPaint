@@ -6,6 +6,7 @@ import { PlayerBlock } from './PlayerBlock';
 import { useOther } from './hooks/useOther';
 import { useSelf } from './hooks/useSelf';
 import { useSocket } from './hooks/useSocket';
+import Draggable from 'react-draggable';
 
 export const Field = () => {
     const dispatch = useDispatch();
@@ -26,10 +27,6 @@ export const Field = () => {
             if (self.y !== y && y >= 9) {
                 dispatch(handleYChange(y));
             }
-            // if (self.id === 2 && self.y !== y && y >= 9) {
-            //     console.log(y);
-            //     dispatch(handleYChange(y));
-            // }
         }
     };
     const handleUnclick = () => {
@@ -48,7 +45,7 @@ export const Field = () => {
         // <PlayerDiv id={1} self={self} other={other} />
         // <CentralDiv self={self} other={other} />
         // <PlayerDiv id={2} self={self} other={other}
-        <div className="overflow-hidden h-[80vw] w-80 bg-gray-200">
+        <div className="overflow-hidden h-[80vw] w-[80vw] bg-gray-200">
             <PlayerBlock />
         </div>
     );
